@@ -28,6 +28,9 @@ const wrappedPromise = function() {
 }
 
 export class Marker extends React.Component {
+  state = {
+    marker: null,
+  }
 
   componentDidMount() {
     this.markerPromise = wrappedPromise();
@@ -82,6 +85,7 @@ export class Marker extends React.Component {
       ...props
     };
     this.marker = new google.maps.Marker(pref);
+    this.setState({marker: this.marker});
 
     evtNames.forEach(e => {
       this.marker.addListener(e, this.handleEvent(e));
