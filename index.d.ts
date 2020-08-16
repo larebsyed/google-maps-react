@@ -79,7 +79,7 @@ type markerEventHandler = (
 ) => any;
 
 export interface IMarkerProps extends Partial<google.maps.MarkerOptions> {
-  google: typeof google;
+  google: GoogleAPI;
   map: google.maps.Map;
   mapCenter?: google.maps.LatLng | google.maps.LatLngLiteral;
 
@@ -99,7 +99,7 @@ export class Circle extends React.Component<any, any> {}
 
 export interface IInfoWindowProps
   extends Partial<google.maps.InfoWindowOptions> {
-  google: typeof google;
+  google: GoogleAPI;
   map: google.maps.Map;
   marker: google.maps.Marker;
 

@@ -103,8 +103,21 @@ export class Marker extends React.Component {
     }
   }
 
+  renderChildren() {
+    const {children} = this.props;
+    if (!children) return null;
+    return React.Children.map(children, c => {
+      if (!c) return;
+      return React.cloneElement(c, {
+        map: this.props.map,
+        google: this.props.google,
+        marker: this.marker,
+      });
+    });
+  }
+
   render() {
-    return null;
+    return this.renderChildren();
   }
 }
 
