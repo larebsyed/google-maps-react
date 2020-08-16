@@ -121,9 +121,19 @@
     _inherits(Marker, _React$Component);
 
     function Marker() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
       _classCallCheck(this, Marker);
 
-      return _possibleConstructorReturn(this, (Marker.__proto__ || Object.getPrototypeOf(Marker)).apply(this, arguments));
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Marker.__proto__ || Object.getPrototypeOf(Marker)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+        marker: null
+      }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(Marker, [{
@@ -183,6 +193,7 @@
           draggable: draggable
         }, props);
         this.marker = new google.maps.Marker(pref);
+        this.setState({ marker: this.marker });
 
         evtNames.forEach(function (e) {
           _this2.marker.addListener(e, _this2.handleEvent(e));
@@ -208,9 +219,26 @@
         };
       }
     }, {
+      key: 'renderChildren',
+      value: function renderChildren() {
+        var _this4 = this;
+
+        var children = this.props.children;
+
+        if (!children) return null;
+        return _react2.default.Children.map(children, function (c) {
+          if (!c) return;
+          return _react2.default.cloneElement(c, {
+            map: _this4.props.map,
+            google: _this4.props.google,
+            marker: _this4.marker
+          });
+        });
+      }
+    }, {
       key: 'render',
       value: function render() {
-        return null;
+        return this.renderChildren();
       }
     }]);
 
